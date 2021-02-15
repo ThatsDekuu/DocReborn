@@ -2,11 +2,13 @@
 using Exiled.API.Features;
 using Exiled.Permissions.Extensions;
 using Interactables.Interobjects.DoorUtils;
+using MEC;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace DocRework.Commands
 {
@@ -45,9 +47,7 @@ namespace DocRework.Commands
                 }
 
                 plr.GameObject.AddComponent<SCP610>();
-                foreach (DoorVariant door in Map.Doors)
-                    if (door.name == "SERVERS_BOTTOM")
-                        plr.Position = door.transform.position;
+                Timing.CallDelayed(0.3f, () => plr.Position = EventHandler.spawnPos);
             }
 
             response = "Player spawned.";

@@ -99,7 +99,7 @@ namespace DocRework
         public float Health { get; set; } = 700;
 
         [Description("The message will be displayed when SCP-610 spawns")]
-        public string SpawnBroadcast { get; set; } = "<size=60><b><color=#ffffff>You are</color> <color=#ff0000>SCP-610</color>\n<color=#ffffff>You are more</color> <color=#ff0000>resistant</color> <color=#ffffff>and more</color> <color=#ff0000>dangerous</color></b></size>";
+        public string SpawnBroadcast { get; set; } = "<size=60><b><color=#ffffff>You are</color> <color=#ff0000>SCP-610</color></b></size>\n<size=50><b><color=#ffffff>You are more</color> <color=#ff0000>resistant</color> <color=#ffffff>and more</color> <color=#ff0000>dangerous</color></b></size>";
 
         [Description("The message duration will be displayed when SCP-610 spawns")]
         public ushort BroadcastDuration { get; set; } = 10;

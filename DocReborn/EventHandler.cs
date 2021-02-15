@@ -18,6 +18,7 @@ namespace DocRework
         private float ZombieAOEDamage = DocRework.singleton.Config.ZombieAoeDamage;
         internal static CoroutineHandle EngageBuffHandle = new CoroutineHandle();
         internal static CoroutineHandle CooldownOnHandle = new CoroutineHandle();
+        internal static Vector3 spawnPos = new Vector3((float)0.26, (float)1001.33, (float)-4.52);
         public Player Scp049Ply { get; private set; }
 
         public void OnFinishingRecall(FinishingRecallEventArgs ev)

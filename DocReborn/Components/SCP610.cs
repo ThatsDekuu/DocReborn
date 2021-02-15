@@ -43,6 +43,7 @@ namespace DocRework
 
         private void Start()
         {
+            scpPlayer.Role = RoleType.Scp0492;
             scpPlayer.MaxHealth = MaxHealth;
             scpPlayer.Health = Health;
             scpPlayer.Broadcast(HintDur, SpawnHint);
@@ -73,6 +74,9 @@ namespace DocRework
                 }
                 else ev.IsAllowed = false;
             }
+            if (ev.Target == scpPlayer)
+                if (ev.DamageType == DamageTypes.Scp207)
+                    ev.Amount = 0;
         }
 
         private void OnDestroy() => PartiallyDestroy();
