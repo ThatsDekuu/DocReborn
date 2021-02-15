@@ -8,20 +8,20 @@ using System.Threading.Tasks;
 
 namespace DocRework.Commands
 {
+    [CommandHandler(typeof(RemoteAdminCommandHandler))]
     [CommandHandler(typeof(GameConsoleCommandHandler))]
     public class CallReinforcement : ICommand
     {
-        string ICommand.Command { get; } = "cr";
-        string[] ICommand.Aliases { get; } = new string[] { };
-        string ICommand.Description { get; } = "Call a Zombie Reinforcement from Spectators!";
+        public string Command { get; } = "cr";
+        public string[] Aliases { get; } = new string[] { };
+        public string Description { get; } = "Call a Zombie Reinforcement from Spectators!";
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             Player player = Player.Get(((CommandSender)sender).SenderId);
             var pList = Player.Get(Team.RIP).ToList();
 
-
-            if (arguments.Count != 0)
+            if (arguments.Count > 0)
             {
                 response = "Usage: cr";
 
