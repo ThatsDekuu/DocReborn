@@ -45,4 +45,4 @@ Note: **DocRework 1.0+ requires Exiled 2.1.34**
 | `InfectionProbability` | float | 30f | Percentage to become SCP-049-2 when a player is inside the Infection Aura radius. |
 | `InfectionAuraCooldown` | float | 5f | The Infection Aura cooldown (E.g. When you're inside the radius and the Infection Aura is in cooldown mode you won't be infected). |
 | `InfectionAuraBroadcast` | string | "You have been infected with SCP-610" | The message will be displayed to the player infected by the Infection Aura. |
-| `InfectionAuraBroadcastDuration` | ushort | true | The message duration will be displayed to the player infected by the Infection Aura. |
+| `InfectionAuraBroadcastDuration` | ushort | 5 | The message duration will be displayed to the player infected by the Infection Aura. |
