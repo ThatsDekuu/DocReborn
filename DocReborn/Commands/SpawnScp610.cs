@@ -10,12 +10,13 @@ using System.Threading.Tasks;
 
 namespace DocRework.Commands
 {
+    [CommandHandler(typeof(RemoteAdminCommandHandler))]
     [CommandHandler(typeof(GameConsoleCommandHandler))]
     public class SpawnScp610 : ICommand
     {
         string ICommand.Command { get; } = "scp610";
-        string[] ICommand.Aliases { get; } = new[] { "s610, spawn610, sscp610" };
-        string ICommand.Description { get; } = "Call a Zombie Reinforcement from Spectators!";
+        string[] ICommand.Aliases { get; } = new string[] { "s610, spawn610, sscp610" };
+        string ICommand.Description { get; } = "Spawn a player as SCP-610!";
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {

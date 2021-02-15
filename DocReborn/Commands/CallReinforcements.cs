@@ -12,13 +12,21 @@ namespace DocRework.Commands
     public class CallReinforcement : ICommand
     {
         string ICommand.Command { get; } = "cr";
-        string[] ICommand.Aliases { get; } = new[] { "cre" };
+        string[] ICommand.Aliases { get; } = new string[] { };
         string ICommand.Description { get; } = "Call a Zombie Reinforcement from Spectators!";
 
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
             Player player = Player.Get(((CommandSender)sender).SenderId);
             var pList = Player.Get(Team.RIP).ToList();
+
+
+            if (arguments.Count != 0)
+            {
+                response = "Usage: cr";
+
+                return false;
+            }
 
             if (player.Role != RoleType.Scp049)
             {
@@ -39,7 +47,7 @@ namespace DocRework.Commands
             {
                 response = DocRework.singleton.Config.Translation_Active_OnCooldown + SCP049AbilityController.AbilityCooldown;
                 return false;
-            }
+            } 
 
             SCP049AbilityController.CallZombieReinforcement(player, SCP049AbilityController.AbilityCooldown, pList);
             response = DocRework.singleton.Config.Translation_Success_CallReinforcement;
