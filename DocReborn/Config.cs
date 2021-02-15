@@ -86,7 +86,7 @@ namespace DocRework
          * SCP-610
          */
 
-        [Description("Enable or Disable the possibility to become SCP-610")]
+        [Description("Enables the possibility to become SCP-610")]
         public bool Scp610Enabled { get; set; } = true;
 
         [Description("The probability to spawn a player as SCP-610 after SCP-049 revived him")]
@@ -99,7 +99,7 @@ namespace DocRework
         public float Health { get; set; } = 700;
 
         [Description("The message will be displayed when SCP-610 spawns")]
-        public string SpawnBroadcast { get; set; } = "";
+        public string SpawnBroadcast { get; set; } = "<size=60><b><color=#ffffff>You are</color> <color=#ff0000>SCP-610</color>\n<color=#ffffff>You are more</color> <color=#ff0000>resistant</color> <color=#ffffff>and more</color> <color=#ff0000>dangerous</color></b></size>";
 
         [Description("The message duration will be displayed when SCP-610 spawns")]
         public ushort BroadcastDuration { get; set; } = 10;
@@ -119,17 +119,17 @@ namespace DocRework
         [Description("Enable the Infection Aura, each player inside the range will become SCP-049-2")]
         public bool InfectionAura { get; set; } = false;
 
-        [Description("The Infection Aura range")]
+        [Description("The Infection Aura radius where you can be affected by")]
         public float InfectionAuraRange { get; set; } = 2f;
 
-        [Description("The Infection Aura probability, each player inside the Infection Aura range will have a probability to become SCP-049-2")]
+        [Description("Percentage to become SCP-049-2 when a player is inside the Infection Aura radius")]
         public float InfectionProbability { get; set; } = 30f;
 
-        [Description("The Infection Aura cooldown (E.g. When you're inside the range, if the Infection Aura is in cooldown mode you won't be infected)")]
+        [Description("The Infection Aura cooldown (E.g. When you're inside the radius and the Infection Aura is in cooldown mode you won't be infected)")]
         public float InfectionAuraCooldown { get; set; } = 5f;
 
         [Description("The message will be displayed to the player infected by the Infection Aura")]
-        public string InfectionAuraBroadcast { get; set; } = "";
+        public string InfectionAuraBroadcast { get; set; } = "<size=60><b><color=#ffffff>You have been</color> <color=#ff0000>infected</color> <color=#ffffff>with</color> <color=#ff0000>SCP-610</color></b></size>";
 
         [Description("The message duration will be displayed to the player infected by the Infection Aura")]
         public ushort InfectionAuraBroadcastDuration { get; set; } = 5;
