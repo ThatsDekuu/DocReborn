@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace DocRework.Commands
 {
-    [CommandHandler(typeof(RemoteAdminCommandHandler))]
-    [CommandHandler(typeof(GameConsoleCommandHandler))]
+    [CommandHandler(typeof(ClientCommandHandler))]
     public class CallReinforcement : ICommand
     {
         public string Command { get; } = "cr";
