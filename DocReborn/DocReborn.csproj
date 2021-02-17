@@ -83,10 +83,10 @@
     <Compile Include="Commands\CallReinforcements.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="DocReborn.cs" />
-    <Compile Include="EventHandler.cs" />
+    <Compile Include="EventHandlers.cs" />
+    <Compile Include="DocRebornComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SCP0492AbilityController.cs" />
-    <Compile Include="SCP049AbilityController.cs" />
+    <Compile Include="Methods.cs" />
     <Compile Include="Components\SCP610.cs" />
     <Compile Include="Commands\SpawnScp610.cs" />
   </ItemGroup>

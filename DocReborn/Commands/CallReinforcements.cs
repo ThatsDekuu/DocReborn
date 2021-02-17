@@ -1,10 +1,12 @@
 ﻿using CommandSystem;
 using Exiled.API.Features;
+using MEC;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace DocRework.Commands
 {
@@ -29,27 +31,29 @@ namespace DocRework.Commands
 
             if (player.Role != RoleType.Scp049)
             {
-                response = DocRework.singleton.Config.Translation_Active_PermissionDenied;
+                response = DocReborn.singleton.Config.Translation_Active_PermissionDenied;
                 return false;
             }
-            if (SCP049AbilityController.CureCounter < DocRework.singleton.Config.MinCures)
+            if (player.GameObject.GetComponent<DocRebornComponent>().CureCounter < DocReborn.singleton.Config.MinCures)
             {
-                response = DocRework.singleton.Config.Translation_Active_NotEnoughRevives;
+                response = DocReborn.singleton.Config.Translation_Active_NotEnoughRevives;
                 return false;
             }
-            if (SCP049AbilityController.AbilityCooldown > 0)
+            if (player.GameObject.TryGetComponent(out DocRebornComponent docReborn) && docReborn.AbilityCooldown > 0)
             {
-                response = DocRework.singleton.Config.Translation_Active_OnCooldown + SCP049AbilityController.AbilityCooldown;
+                response = DocReborn.singleton.Config.Translation_Active_OnCooldown + docReborn.AbilityCooldown;
                 return false;
             }
             if (pList.IsEmpty())
             {
-                response = DocRework.singleton.Config.Translation_Active_OnCooldown + SCP049AbilityController.AbilityCooldown;
+                response = DocReborn.singleton.Config.Translation_Active_NoSpectators;
                 return false;
-            } 
+            }
 
-            SCP049AbilityController.CallZombieReinforcement(player, SCP049AbilityController.AbilityCooldown, pList);
-            response = DocRework.singleton.Config.Translation_Success_CallReinforcement;
+            Vector3 pos = player.Position;
+            Methods.CallZombieReinforcement(pos, player.GameObject.GetComponent<DocRebornComponent>().AbilityCooldown, pList);
+            Timing.RunCoroutine(Methods.StartCooldownTimer(player));
+            response = DocReborn.singleton.Config.Translation_Success_CallReinforcement;
             return true;
         }
     }

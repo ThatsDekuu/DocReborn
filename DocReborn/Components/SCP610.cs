@@ -18,20 +18,20 @@ namespace DocRework
         public Player scpPlayer { get; private set; }
         private CoroutineHandle InfectionAuraHandle = new CoroutineHandle();
         PlayerEffect speedEffect;
-        private int MaxHealth = DocRework.singleton.Config.MaxHealth;
-        private float Health = DocRework.singleton.Config.Health;
-        private string SpawnHint = DocRework.singleton.Config.SpawnBroadcast;
-        private ushort HintDur = DocRework.singleton.Config.BroadcastDuration;
-        private float DamageAmount = DocRework.singleton.Config.HitDamage;
-        private byte SpeedAmount = DocRework.singleton.Config.SpeedAmount;
-        private bool InfectionMode = DocRework.singleton.Config.InfectionMode;
-        private bool AssaultMode = DocRework.singleton.Config.AssaultMode;
-        private bool InfectionAura = DocRework.singleton.Config.InfectionAura;
-        private float Range = DocRework.singleton.Config.InfectionAuraRange;
-        private float Probability = DocRework.singleton.Config.InfectionProbability;
-        private string InfectionAuraHint = DocRework.singleton.Config.InfectionAuraBroadcast;
-        private ushort InfectionAuraDur = DocRework.singleton.Config.InfectionAuraBroadcastDuration;
-        private float InfectionAuraCooldown = DocRework.singleton.Config.InfectionAuraCooldown;
+        private int MaxHealth = DocReborn.singleton.Config.MaxHealth;
+        private float Health = DocReborn.singleton.Config.Health;
+        private string SpawnHint = DocReborn.singleton.Config.SpawnBroadcast;
+        private ushort HintDur = DocReborn.singleton.Config.BroadcastDuration;
+        private float DamageAmount = DocReborn.singleton.Config.HitDamage;
+        private byte SpeedAmount = DocReborn.singleton.Config.SpeedAmount;
+        private bool InfectionMode = DocReborn.singleton.Config.InfectionMode;
+        private bool AssaultMode = DocReborn.singleton.Config.AssaultMode;
+        private bool InfectionAura = DocReborn.singleton.Config.InfectionAura;
+        private float Range = DocReborn.singleton.Config.InfectionAuraRange;
+        private float Probability = DocReborn.singleton.Config.InfectionProbability;
+        private string InfectionAuraHint = DocReborn.singleton.Config.InfectionAuraBroadcast;
+        private ushort InfectionAuraDur = DocReborn.singleton.Config.InfectionAuraBroadcastDuration;
+        private float InfectionAuraCooldown = DocReborn.singleton.Config.InfectionAuraCooldown;
 
         private void Awake() 
         {
@@ -50,8 +50,7 @@ namespace DocRework
             scpPlayer.Broadcast(HintDur, SpawnHint);
             scpPlayer.CustomInfo = $"<color=#ff0000>SCP-610</color>";
 
-            if (InfectionAura)
-                InfectionAuraHandle = Timing.RunCoroutine(InfectionAuraEffect(scpPlayer, Range, Probability, InfectionAuraDur, InfectionAuraHint, InfectionAuraCooldown));
+            if (InfectionAura) InfectionAuraHandle = Timing.RunCoroutine(InfectionAuraEffect());
         }
 
         private void Update()
@@ -109,20 +108,20 @@ namespace DocRework
 
         private void UnregisterEvents() => Exiled.Events.Handlers.Player.Hurting -= OnHurt;
 
-        private IEnumerator<float> InfectionAuraEffect(Player ply, float range, float probability, ushort dur, string bc, float cooldown)
+        private IEnumerator<float> InfectionAuraEffect()
         {
             while (Round.IsStarted)
             {
-                if (ply != null)
+                if (scpPlayer != null)
                     foreach (Player p in Player.List)
-                        if (Vector3.Distance(ply.Position, p.Position) <= range && p.Team != Team.SCP && !p.IsGodModeEnabled)
-                            if (UnityEngine.Random.Range(0, 101) <= probability)
+                        if (Vector3.Distance(scpPlayer.Position, p.Position) <= Range && p.Team != Team.SCP && !p.IsGodModeEnabled)
+                            if (UnityEngine.Random.Range(0, 101) <= Probability)
                             {
                                 p.Role = RoleType.Scp0492;
-                                p.Position = ply.Position;
-                                p.Broadcast(dur, bc);
+                                p.Position = scpPlayer.Position;
+                                p.Broadcast(InfectionAuraDur, InfectionAuraHint);
                             }
-                yield return Timing.WaitForSeconds(cooldown);
+                yield return Timing.WaitForSeconds(InfectionAuraCooldown);
             }
         }
     }

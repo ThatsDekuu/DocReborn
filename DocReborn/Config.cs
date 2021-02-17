@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using Exiled.API.Interfaces;
+using UnityEngine;
 
 namespace DocRework
 {
@@ -21,7 +22,7 @@ namespace DocRework
         public bool AllowDocSelfHeal { get; set; } = true;
 
         [Description("Set the minimum cure amount for the buff area to kick in")]
-        public int MinCures { get; set; } = 3;
+        public int MinCures { get; set; } = 1;
 
         [Description("Change between 049's arua's heal type: 0 is for flat HP, 1 is for missing % HP")]
         public byte HealType { get; set; } = 0;
@@ -90,7 +91,7 @@ namespace DocRework
         public bool Scp610Enabled { get; set; } = true;
 
         [Description("The probability to spawn a player as SCP-610 after SCP-049 revived him")]
-        public float SpawnProbability { get; set; } = 10f;
+        public float SpawnProbability { get; set; } = 100f;
 
         [Description("SCP-610 Max Health")]
         public int MaxHealth { get; set; } = 700;
@@ -133,5 +134,10 @@ namespace DocRework
 
         [Description("The message duration will be displayed to the player infected by the Infection Aura")]
         public ushort InfectionAuraBroadcastDuration { get; set; } = 5;
+
+        [Description("The zone where SCP-610 will be spawned with the command")]
+        public float Xpos { get; set; } = 0.26f;
+        public float Ypos { get; set; } = 1001.33f;
+        public float Zpos { get; set; } = -4.52f;
     }
 }

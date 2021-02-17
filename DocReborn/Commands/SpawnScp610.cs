@@ -47,7 +47,8 @@ namespace DocRework.Commands
                 }
 
                 plr.GameObject.AddComponent<SCP610>();
-                Timing.CallDelayed(0.3f, () => plr.Position = EventHandler.spawnPos);
+                Vector3 spawnPos = new Vector3(DocReborn.singleton.Config.Xpos, DocReborn.singleton.Config.Ypos, DocReborn.singleton.Config.Zpos);
+                Timing.CallDelayed(0.3f, () => plr.Position = spawnPos);
             }
 
             response = "Player spawned.";
