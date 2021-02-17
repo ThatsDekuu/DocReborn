@@ -31,7 +31,6 @@ namespace DocRework
 
         private void Awake()
         {
-            Log.Debug("Role detected");
             Load();
             Scp049Ply = Player.Get(gameObject);
         }
@@ -94,14 +93,12 @@ namespace DocRework
 
         public void Load()
         {
-            Log.Debug("Load");
             Scp049Events.FinishingRecall += OnFinishingRecall;
             PlayerEvents.Hurting += OnPlayerHit;
         }
 
         public void Unload()
         {
-            Log.Debug("Unload");
             Scp049Events.FinishingRecall -= OnFinishingRecall;
             PlayerEvents.Hurting -= OnPlayerHit;
         }

@@ -91,7 +91,7 @@ namespace DocRework
         public bool Scp610Enabled { get; set; } = true;
 
         [Description("The probability to spawn a player as SCP-610 after SCP-049 revived him")]
-        public float SpawnProbability { get; set; } = 100f;
+        public float SpawnProbability { get; set; } = 10;
 
         [Description("SCP-610 Max Health")]
         public int MaxHealth { get; set; } = 700;
