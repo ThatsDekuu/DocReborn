@@ -10,7 +10,7 @@ namespace DocRework
         public override string Author { get; } = "Tomorii";
         public override string Name { get; } = "DocReborn";
         public override string Prefix { get; } = "DocReborn";
-        public override Version Version { get; } = new Version(1, 2, 0);
+        public override Version Version { get; } = new Version(1, 2, 1);
         public override Version RequiredExiledVersion { get; } = new Version(2, 1, 34);
 
         public static DocReborn singleton;
